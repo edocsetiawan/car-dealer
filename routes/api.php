@@ -20,4 +20,6 @@ Route::post('register','App\Http\Controllers\api\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('getme','App\Http\Controllers\api\UserController@userDetail');
     Route::post('logout','App\Http\Controllers\api\UserController@logout');
+    Route::post('add-new-stock','App\Http\Controllers\api\StockController@addNewStock');
+    Route::post('add-new-transaction','App\Http\Controllers\api\TransactionController@addNewTransaction');
 });
