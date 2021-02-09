@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">New Car</div>
                 <div class="card-body">
-                    <form @submit.prevent="registerCar">
+                    <form @submit.prevent="registerTransaction">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="name" class="form-control" v-model="parameter.name">
@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <select v-model="parameter.car_id">
-                            <option v-for="product in products" v-bind:value="{ id: product.id, text: product.car_name }">
+                            <option v-for="product in products" v-bind:value="product.id">
                                 {{ product.car_name }}
                             </option>
                         </select>
@@ -28,7 +28,7 @@
                             <label for="password">qty</label>
                             <input type="number" class="form-control" v-model="parameter.qty">
                         </div>
-                        <button type="submit" class="btn btn-primary" style="background-color:blue;border-color:blue">Register</button>
+                        <button type="submit" class="btn btn-primary" style="background-color:blue;border-color:blue">Submit</button>
                     </form>
                     <button class="btn btn-primary" style="float:right;margin-top:-38px;background-color:red;border-color:red" @click="cancel()">Cancel</button>
                 </div>
@@ -58,7 +58,7 @@ export default {
         cancel : function () {
             this.$router.push({name: 'landingpage'});
         },
-        registerCar (){
+        registerTransaction (){
             if(this.parameter.name === ''){
                 alert("Please fill name!");
             }else if(this.parameter.email === ''){
@@ -93,7 +93,7 @@ export default {
                     }
                 }).then((response) => {
                 if(response.data.success){
-                    this.products = response.data.data.data;
+                    this.products = response.data.data;
                 }else{
                     alert("something went wrong");
                 }
