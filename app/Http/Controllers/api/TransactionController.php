@@ -29,7 +29,7 @@ class TransactionController extends Controller
          $transaction['buyer_phone_number']  = $request['phone_number'];
          $transaction['car_id']              = $request['car_id'];
          $transaction['qty']                 = (int)$request['qty'];
-         $transaction['total_price']         = (float)$request['total_price'];
+         $transaction['total_price']         = (int)$request['qty'] * $car_data->price;
          $transaction['total_price_format']  = 'Rp.' . number_format($request['total_price'],0, ',' , '.');
          $transaction['car_name']            = $car_data->car_name;
          Transaction::create($transaction);

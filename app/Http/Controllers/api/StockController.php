@@ -28,4 +28,13 @@ class StockController extends Controller
 
         return $this->responseApi('ok','','New stock success insert');
      }
+
+     /**
+      * get stock
+      */
+      public function getStock()
+      {
+         $data = Stock::where('stock','>',0)->get();
+         return $this->responseApi('ok',$data,'Data found');
+      }
 }
