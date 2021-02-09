@@ -2258,6 +2258,9 @@ __webpack_require__.r(__webpack_exports__);
       products: []
     };
   },
+  mounted: function mounted() {
+    this.init();
+  },
   methods: {
     cancel: function cancel() {
       this.$router.push({
@@ -2304,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         if (response.data.success) {
-          _this2.products = response.data.data.data;
+          _this2.products = response.data.data;
         } else {
           alert("something went wrong");
         }
@@ -39144,7 +39147,7 @@ var render = function() {
       _c(
         "router-link",
         { staticClass: "navbar-brand", attrs: { to: "/landingpage" } },
-        [_vm._v("Scramble Word")]
+        [_vm._v("Dealer")]
       ),
       _vm._v(" "),
       _vm._m(0),
@@ -39501,21 +39504,13 @@ var render = function() {
                     }
                   },
                   _vm._l(_vm.products, function(product) {
-                    return _c(
-                      "option",
-                      {
-                        domProps: {
-                          value: { id: product.id, text: product.car_name }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(product.car_name) +
-                            "\n                        "
-                        )
-                      ]
-                    )
+                    return _c("option", { domProps: { value: product.id } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(product.car_name) +
+                          "\n                        "
+                      )
+                    ])
                   }),
                   0
                 )
