@@ -74,11 +74,6 @@ export default {
         this.init();
     },
     methods :{
-        click : function(){
-            if(confirm("Do you really want to play?")){
-                this.$router.push({name: 'gamepage'});
-            }
-        },
         init : function(){
             if(localStorage.getItem('token') == null){
                 alert("Please login first!");

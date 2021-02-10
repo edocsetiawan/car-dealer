@@ -88,13 +88,20 @@ class UserController extends Controller
 
         $transaction_last_7_days    = $clone3->whereDate('transaction.created_at','>',Carbon::today()->subDays(7))->first();
 
-        $qty_percent                = number_format((($transaction_today->count-$transaction_yesterday->count)/$transaction_yesterday->count)*100,2, ',' , '.'). '%';
+        if($transaction_today && $transaction_yesterday){
+            $qty_percent                = number_format((($transaction_today->count-$transaction_yesterday->count)/$transaction_yesterday->count)*100,2, ',' , '.'). '%';
         
         $total_percent              = number_format((($transaction_today->price-$transaction_yesterday->price)/$transaction_yesterday->price)*100,2, ',' , '.'). '%';
 
         $user['today_transaction']['car_name']          = $transaction_today->car_name;
         $user['today_transaction']['qty']               = $transaction_today->count. ' ' .$qty_percent.'' ;
         $user['today_transaction']['total']             = 'Rp.' . number_format($transaction_today->price,0, ',' , '.') .' '.$total_percent; 
+        }else{
+            $user['today_transaction']['car_name']          = '-';
+            $user['today_transaction']['qty']               = '-';
+            $user['today_transaction']['total']             = 'Rp.' . number_format(0,0, ',' , '.'); 
+        }
+        
 
         $user['last_7_days']['car_name']          = $transaction_last_7_days->car_name;
         $user['last_7_days']['qty']               = $transaction_last_7_days->count;

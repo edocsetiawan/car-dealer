@@ -1941,7 +1941,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       token: '',
       user: [],
-      today_data: [],
+      today_data: {
+        car_name: '',
+        qty: '',
+        total: ''
+      },
       last_7_days: []
     };
   },
@@ -1949,13 +1953,6 @@ __webpack_require__.r(__webpack_exports__);
     this.init();
   },
   methods: {
-    click: function click() {
-      if (confirm("Do you really want to play?")) {
-        this.$router.push({
-          name: 'gamepage'
-        });
-      }
-    },
     init: function init() {
       var _this = this;
 
@@ -2267,7 +2264,7 @@ __webpack_require__.r(__webpack_exports__);
         name: 'landingpage'
       });
     },
-    registerCar: function registerCar() {
+    registerTransaction: function registerTransaction() {
       var _this = this;
 
       if (this.parameter.name === '') {
@@ -39382,7 +39379,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.registerCar($event)
+                  return _vm.registerTransaction($event)
                 }
               }
             },
@@ -39552,7 +39549,7 @@ var render = function() {
                   },
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Register")]
+                [_vm._v("Submit")]
               )
             ]
           ),
